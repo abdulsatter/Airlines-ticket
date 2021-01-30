@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <Section id="section-out">
+    <!--Header and Menu Section-->
+    <header class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a class="active" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main class="main-content container">
+        <div class="booking-form">
+            <h3>Booking Flights</h3>
+            <div class="input-group">
+                <label for="">Flying From</label>
+                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+            </div>
+            <div class="input-group">
+                <label for="">Flying To</label>
+                <input class="inp-style" type="text" name="" placeholder="New York, United States">
+            </div>
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">Departure</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+                <div class="input-group">
+                    <label for="">Return</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+            </div>
+            <div class="input-group f-class">
+                <div>
+                    <label id="special-price" for="">First Class ($150)</label>
+                    <input id="special-value" class="inp-style inp-width" type="number" name="" value="0">
+                </div>
+                <div class="plus-minus-btn">
+                    <p id="special-increase">+</p>
+                    <p id="special-decrease">-</p>
+                </div>
+            </div>
+            
+            <div class="input-group f-class">
+                <div>
+                    <label id="economy-price" for="">Economy ($100)</label>
+                    <input id="economy-value" class="inp-style inp-width" type="number" name="" value="0">
+                </div>
+                <div class="plus-minus-btn">
+                    <p id="economy-increase">+</p>
+                    <p id="economy-decrease">-</p>
+                </div>
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p>$ <span id="sub-total">00</span></p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p>$ <span id="tax">00</span></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p>$ <span id="total">00</span></p>
+                    </div>
+                </div>
+            </div>
+            <button id="booking" class="btn-style">Book Now</button>
+        </div>
+
+        <div class="booking-content">
+            <h1>discover <br> around the world</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
+        </div>
+    </section>
+    <section>
+        <div id="book-block" class="book">
+            <h1>Congratulation For bought ticket</h1>
+          
+        </div>
+       
+    </section>
+                <script>
+                    // this function execute special ticket increase and decrease
+                       function ticketIncreaseDecrease(increase){
+                        const inputValue = document.getElementById('special-value');
+                        const countValue = parseInt(inputValue.value);
+                        // const newValue = countValue +1 ;
+                        let newValue = countValue;
+                        if (increase == true){
+                            newValue = countValue +1;
+                        }
+                        if(increase == false && countValue > 0){
+                            newValue = countValue -1;
+                        }
+                        inputValue.value = newValue;
+                        const specialTotalPrice = newValue* 150;
+                        document.getElementById('special-price').innerText ='$' + specialTotalPrice;
+                    }
+                    // increase ticket
+                    document.getElementById('special-increase').addEventListener('click', function(){
+                        ticketIncreaseDecrease(true);
+                        totalAmount();
+                    });
+                   // dicrease ticket
+                     document.getElementById('special-decrease').addEventListener('click', function(){
+                        ticketIncreaseDecrease(false)
+                        totalAmount();
+                    });
+
+
+                    // this function economy ticket increase and decrease
+                    function economyticket(economyIncrease){
+                        const inputValue = document.getElementById('economy-value');
+                        const countValue = parseInt(inputValue.value);
+                        // const newValue = countValue + 1;
+                        let newValue = countValue;
+                        if(economyIncrease == true){
+                            newValue = countValue + 1;
+                        }
+                        if(economyIncrease == false && countValue > 0){
+                            newValue = countValue - 1;
+                        }
+                        inputValue.value = newValue;
+                        const economyTotalPrice = newValue *100;
+                        document.getElementById('economy-price').innerText = '$' + economyTotalPrice;
+                    }
+                    // economy decrease value
+                    document.getElementById('economy-decrease').addEventListener('click', function(){
+                        economyticket(false);
+                        totalAmount();
+                    });
+                    // economy increase value
+                    document.getElementById('economy-increase').addEventListener('click', function(){
+                        economyticket(true);
+                        totalAmount();
+
+                    });
+
+                    // this is sub total and total and tax
+                    function totalAmount(){
+                     const specialValue = document.getElementById('special-value');
+                     const specialNewValue = parseInt(specialValue.value);
+
+                     const economyValue = document.getElementById('economy-value');
+                     const economyNewValue = parseInt(economyValue.value);
+
+                     const subTotalPrice = specialNewValue * 150 + economyNewValue * 100;
+                     document.getElementById('sub-total').innerText = subTotalPrice;
+
+                     const vatPrice = Math.round(subTotalPrice * 0.1);
+                     document.getElementById('tax').innerText = vatPrice;
+
+                     const totalAmount = vatPrice + subTotalPrice;
+                     document.getElementById('total').innerText = totalAmount;
+                    }
+                    // booking part
+                    document.getElementById('booking').addEventListener('click', function(){
+                        document.getElementById('section-out').style.display ='none';
+                        document.getElementById('book-block').style.display = 'block';
+                     
+                    })
+                    
+                    
+
+                    
+                </script>
+    <!--Thank You-->
+</body>
+
+</html>
