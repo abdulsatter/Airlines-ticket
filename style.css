@@ -131,3 +131,6 @@ nav ul li a:hover, a.active{
     border-radius: 2px solid navy;
     box-shadow: 20px 20px 20px gray;
 }
+.cursor{
+    cursor: pointer;
+}
